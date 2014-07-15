@@ -14,6 +14,29 @@
   )
 )
 
+(deftest add-1-new-node-to-graph
+  (testing "build a graph representation from a array of arrays"
+    (let [
+        new-node ["A" "B"]
+        graph (hash-map)
+        result (add-node new-node graph)
+      ]
+      (is (= {:A ["B"] } result))
+    )
+  )
+)
+
+(deftest add-1-new-node-to-non-empty-graph
+  (testing "build a graph representation from a array of arrays"
+    (let [
+        new-node ["A" "E"]
+        graph ({:A ["B"]})
+      ]
+      (is (= {:A ["B" "E"] } result))
+    )
+  )
+)
+
 (deftest hasMap-representation
   (testing "build a graph representation from a array of arrays"
     (let [
