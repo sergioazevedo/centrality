@@ -1,12 +1,6 @@
 (ns centrality.nodes-reader
   (:gen-class))
 
-
-(defn build-graph
-  [nodes]
-  (hash-map)
-)
-
 (defn- extract-first-element-from-as-keyword
   [array]
   (keyword (get array 0) )
@@ -47,10 +41,20 @@
   [new-node graph]
   (let[
     key (extract-first-element-from-as-keyword new-node)
-    key-exists? (exist-key-in-graph key graph)
-    ]
+    key-exists? (exist-key-in-graph key graph)]
     (if key-exists?
       (append-new-value-to-graph-key new-node graph)
-      (add-new-node-into-graph new-node graph)
-      )
-  ))
+      (add-new-node-into-graph new-node graph))))
+
+
+(defn build-graph
+  [nodes]
+  (let[
+    graph (atom (hash-map))]
+    (doall
+      (map (fn [n]
+              (let [new-graph (add-node n @graph)]
+              (reset! graph new-graph))) nodes))
+    @graph))
+
+
