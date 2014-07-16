@@ -3,17 +3,6 @@
   (:use centrality.nodes-reader)
 )
 
-(deftest nodes-reader-test
-  (testing "build-graph returns a HashMap instance"
-    (let [
-        nodes [ ["A" "B"] ["B" "C"] ["B" "D"] ["A" "E"] ]
-        graph (build-graph [nodes])
-      ]
-      (is (= (hash-map) graph))
-    )
-  )
-)
-
 (deftest add-1-new-node-to-graph
   (testing "build a graph representation from a array of arrays"
     (let [
@@ -42,7 +31,7 @@
   (testing "build a graph representation from a array of arrays"
     (let [
         nodes [ ["A" "B"] ["B" "C"] ["B" "D"] ["A" "E"] ]
-        graph (build-graph [nodes])
+        graph (build-graph nodes)
       ]
       (is (= {:A ["B" "E"] :B ["C" "D"] :C ["B"] :D ["B"] :E ["A"]} graph))
     )
