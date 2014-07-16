@@ -9,7 +9,7 @@
         nodes [ ["A" "B"] ["B" "C"] ["B" "D"] ["A" "E"] ]
         graph (build-graph [nodes])
       ]
-      (is (instance? clojure.lang.PersistentHashMap graph))
+      (is (= (hash-map) graph))
     )
   )
 )
