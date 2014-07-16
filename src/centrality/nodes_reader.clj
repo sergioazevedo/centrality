@@ -47,7 +47,7 @@
       (add-new-node-into-graph new-node graph))))
 
 
-(defn build-graph
+(defn build-graph-from
   [nodes]
   (let[
     graph (atom (hash-map))]

@@ -31,7 +31,7 @@
   (testing "build a graph representation from a array of arrays"
     (let [
         nodes [ ["A" "B"] ["B" "C"] ["B" "D"] ["A" "E"] ]
-        graph (build-graph nodes)
+        graph (build-graph-from nodes)
       ]
       (is (= {:A ["B" "E"] :B ["C" "D"] :C ["B"] :D ["B"] :E ["A"]} graph))
     )
