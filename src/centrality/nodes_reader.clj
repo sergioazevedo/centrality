@@ -46,15 +46,18 @@
       (append-new-value-to-graph-key new-node graph)
       (add-new-node-into-graph new-node graph))))
 
+(defn update-graph-with
+  [node graph]
+  (let [new-graph (add-node node @graph)]
+    (reset! graph new-graph)
+    graph))
 
 (defn build-graph-from
   [nodes]
   (let[
     graph (atom (hash-map))]
     (doall
-      (map (fn [n]
-              (let [new-graph (add-node n @graph)]
-              (reset! graph new-graph))) nodes))
+      (map (fn [n] (update-graph-with n graph)) nodes))
     @graph))
 
 
