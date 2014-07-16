@@ -30,7 +30,8 @@
   (testing "build a graph representation from a array of arrays"
     (let [
         new-node ["A" "E"]
-        graph ({:A ["B"]})
+        graph {:A ["B"]}
+        result (add-node new-node graph)
       ]
       (is (= {:A ["B" "E"] } result))
     )

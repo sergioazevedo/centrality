@@ -4,10 +4,25 @@
 
 (defn build-graph
   [nodes]
-  (clojure.lang.PersistentHashMap/EMPTY)
+  (hash-map)
 )
+
+(defn- extract-first-element-from
+  [array]
+  (get array 0)
+  )
+
+(defn- extract-last-element-from
+  [array]
+  (get array 1)
+  )
 
 (defn add-node
   [new-node graph]
-  { (keyword (get new-node 0)) [(get new-node 1)]}
-)
+  (let[
+    key (extract-first-element-from new-node)
+    value (extract-last-element-from new-node)
+    result {(keyword key) [value]}
+    ]
+    result
+  ))
