@@ -7,9 +7,9 @@
   (hash-map)
 )
 
-(defn- extract-first-element-from
+(defn- extract-first-element-from-as-keyword
   [array]
-  (get array 0)
+  (keyword (get array 0) )
   )
 
 (defn- extract-last-element-from
@@ -20,9 +20,9 @@
 (defn add-node
   [new-node graph]
   (let[
-    key (extract-first-element-from new-node)
     value (extract-last-element-from new-node)
     result {(keyword key) [value]}
+    key (extract-first-element-from-as-keyword new-node)
     ]
     result
   ))
