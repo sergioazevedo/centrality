@@ -27,13 +27,24 @@
   )
 )
 
+(deftest simple-hasMap-representation
+  (testing "build a graph representation from a array of arrays"
+    (let [
+        nodes [ ["A" "B"] ["B" "A"] ["B" "C"] ["C" "B"] ]
+        graph (build-graph-from nodes)
+      ]
+      (is (= {:A ["B"] :B ["A" "C"] :C ["B"]} graph))
+    )
+  )
+)
+
 (deftest hasMap-representation
   (testing "build a graph representation from a array of arrays"
     (let [
         nodes [ ["A" "B"] ["B" "C"] ["B" "D"] ["A" "E"] ]
         graph (build-graph-from nodes)
       ]
-      (is (= {:A ["B" "E"] :B ["C" "D"] :C ["B"] :D ["B"] :E ["A"]} graph))
+      (is (= {:E ["A"], :D ["B"], :C ["B"], :B ["C" "D" "A"], :A ["B" "E"]} graph) )
     )
   )
 )

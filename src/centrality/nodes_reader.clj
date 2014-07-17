@@ -26,16 +26,24 @@
     )
   )
 
+(defn- values-contains-new-value
+  [value coll]
+  (some #{value} coll)
+)
+
 (defn- append-new-value-to-graph-key
   [new-node graph]
   (let[
     key (extract-first-element-from-as-keyword new-node)
     values (get graph key )
-    new-value (extract-last-element-from new-node)]
-
-    (assoc graph key (conj values new-value))
+    new-value (extract-last-element-from new-node)
+    value-exists? (values-contains-new-value new-value values) ]
+    (if value-exists?
+      graph
+      (assoc graph key (conj values new-value))
     )
   )
+)
 
 (defn add-node
   [new-node graph]
@@ -57,7 +65,11 @@
   (let[
     graph (atom (hash-map))]
     (doall
-      (map (fn [n] (update-graph-with n graph)) nodes))
+      (map (fn [n] (update-graph-with n graph)) nodes)
+    )
+    (doall
+      (map (fn [n] (update-graph-with (vec (reverse n)) graph)) nodes)
+    )
     @graph))
 
 
