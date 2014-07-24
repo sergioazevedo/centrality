@@ -30,10 +30,10 @@
 (deftest simple-hasMap-representation
   (testing "build a graph representation from a array of arrays"
     (let [
-        nodes [ ["A" "B"] ["B" "A"] ["B" "C"] ["C" "B"] ]
+        nodes [ ["A" "B"] ["B" "C"] ]
         graph (build-graph-from nodes)
       ]
-      (is (= {:A ["B"] :B ["A" "C"] :C ["B"]} graph))
+      (is (= {:A ["B"] :B ["C"] } graph))
     )
   )
 )

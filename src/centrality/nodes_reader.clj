@@ -62,13 +62,9 @@
 
 (defn build-graph-from
   [nodes]
-  (let[
-    graph (atom (hash-map))]
+  (let[graph (atom (hash-map))]
     (doall
       (map (fn [n] (update-graph-with n graph)) nodes)
-    )
-    (doall
-      (map (fn [n] (update-graph-with (vec (reverse n)) graph)) nodes)
     )
     @graph))
 
