@@ -68,4 +68,28 @@
     )
     @graph))
 
+(defn get-distance-between
+  [v1 v2 graph]
+  (let [
+    values (get graph v1)
+    found? (values-contains-new-value(values v2))]
+  )
+)
 
+(defn try-reach-vertex-from
+  [origin-list target graph]
+  (map (fn[origin] (get-distance-between origin target)) origin-list)
+)
+
+(defn calculate-distances-of
+  [vertex graph]
+  (let[
+    vertex-list (keys graph)
+    distances (atom (hash-map))
+    ]
+    (doall
+      (map (fn[v]( )) vertex-list)
+    )
+  )
+
+)

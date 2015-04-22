@@ -19,3 +19,28 @@
     )
   )
 )
+
+(defn rec-dfs
+  [graph explored-vertices frontier-vertices]
+  (println graph)
+  (lazy-seq
+    (if (empty? frontier-vertices)
+      nil
+      (let[
+        next-vertice (keyword (peek frontier-vertices) )
+        neighbors ( get graph next-vertice ) ]
+        (cons next-vertice (rec-dfs
+                              (into explored-vertices neighbors)
+                              (into (pop frontier-vertices) (remove explored-vertices neighbors))
+                            )
+        )
+      )
+    )
+  )
+)
+
+(defn seq-graph-dfs
+  [graph strating-vertex]
+  (rec-dfs graph #{strating-vertex} [strating-vertex])
+)
+
